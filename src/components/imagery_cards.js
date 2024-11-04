@@ -27,7 +27,7 @@ class ImageryCard extends Component {
     return (
       <Col className='px-1 pb-2' key={this.props.source} sm={this.props.sm || 6} md={this.props.md || 4} lg={this.props.lg || 3}>
         <Card className='event-image-data-card' id={`image_${this.props.source}`}>
-          <Image fluid onError={this.handleMissingImage} src={this.props.filepath} onClick={this.handleCnClick} />
+          <Image fluid onError={this.handleMissingImage} src={this.props.filepath} onClick={this.handleOnClick} />
           <span>{this.props.source}</span>
         </Card>
       </Col>
