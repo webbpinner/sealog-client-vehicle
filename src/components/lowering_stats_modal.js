@@ -312,6 +312,8 @@ class LoweringStatsModal extends Component {
       stats: this.state.stats
     }
 
+    delete newLoweringAdditionalMeta['lowering_files']
+
     const newLoweringRecord = {
       ...this.props.lowering,
       start_ts: this.state.milestones.start_ts,
