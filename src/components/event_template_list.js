@@ -14,7 +14,7 @@ const sortCategories = (category_list) => {
   }
 
   const order_map = new Map()
-  CATEGORY_SORT_ORDER.forEach((item, index) => order_map.set(item.toLowerCase(), index))
+  CATEGORY_SORT_ORDER.forEach((item, index) => order_map.set(item, index))
 
   return category_list.sort((a, b) => {
     // Check if the item exists in the orderList
