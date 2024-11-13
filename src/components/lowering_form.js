@@ -285,7 +285,12 @@ const warn = (formProps) => {
 }
 
 const mapStateToProps = (state) => {
+
+  console.log(state)
+
   let initialValues = {
+    start_ts: moment.utc().format(dateFormat + ' ' + timeFormat),
+    stop_ts: moment.utc().add(1, 'days').format(dateFormat + ' ' + timeFormat),
     ...{ lowering_additional_meta: {} },
     ...state.lowering.lowering
   }

@@ -365,6 +365,7 @@ const warn = (formProps) => {
 
 const mapStateToProps = (state) => {
   let initialValues = {
+    start_ts: moment.utc().format(dateFormat),
     ...{ cruise_additional_meta: { cruise_vessel: DEFAULT_VESSEL } },
     ...state.cruise.cruise
   }
