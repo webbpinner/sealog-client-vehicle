@@ -3,7 +3,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { reduxForm, Field, change } from 'redux-form'
 import { Button, Card, Form } from 'react-bootstrap'
-import { renderAlert, renderDateTimePicker, renderMessage, renderTextField, renderTextArea } from './form_elements'
+import { renderAlert, renderDateTimePicker, renderMessage, renderTextField, renderTextArea, dateFormat } from './form_elements'
 import moment from 'moment'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,8 +15,10 @@ import { _Lowering_ } from '../vocab'
 
 import * as mapDispatchToProps from '../actions'
 
-const dateFormat = 'YYYY-MM-DD'
 const timeFormat = 'HH:mm'
+
+const start_ts = moment.utc().set('second', 0).set('millisecond', 0)
+const stop_ts = start_ts.clone().add(1, 'days')
 
 class LoweringForm extends Component {
   constructor(props) {
@@ -285,12 +287,9 @@ const warn = (formProps) => {
 }
 
 const mapStateToProps = (state) => {
-
-  console.log(state)
-
   let initialValues = {
-    start_ts: moment.utc().format(dateFormat + ' ' + timeFormat),
-    stop_ts: moment.utc().add(1, 'days').format(dateFormat + ' ' + timeFormat),
+    start_ts,
+    stop_ts,
     ...{ lowering_additional_meta: {} },
     ...state.lowering.lowering
   }

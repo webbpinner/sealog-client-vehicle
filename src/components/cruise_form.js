@@ -15,6 +15,8 @@ import { _Cruise_, _cruise_ } from '../vocab'
 
 import * as mapDispatchToProps from '../actions'
 
+const start_ts = moment.utc().set('hour', 0).set('minute', 0).set('second', 0).set('millisecond', 0)
+
 class CruiseForm extends Component {
   constructor(props) {
     super(props)
@@ -365,7 +367,7 @@ const warn = (formProps) => {
 
 const mapStateToProps = (state) => {
   let initialValues = {
-    start_ts: moment.utc().format(dateFormat),
+    start_ts,
     ...{ cruise_additional_meta: { cruise_vessel: DEFAULT_VESSEL } },
     ...state.cruise.cruise
   }
