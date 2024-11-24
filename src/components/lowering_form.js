@@ -287,9 +287,6 @@ const warn = (formProps) => {
 }
 
 const mapStateToProps = (state) => {
-
-  console.log(state)
-
   let initialValues = {
     start_ts,
     stop_ts,

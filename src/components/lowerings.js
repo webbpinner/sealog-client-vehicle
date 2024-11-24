@@ -43,23 +43,17 @@ class Lowerings extends Component {
     this.setState({ previouslySelectedLowering: this.props.lowering_id })
     this.props.fetchLowerings()
     this.setActiveCruise()
-    // this.filterLoweringsFromProps()
     this.props.clearSelectedLowering()
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.props.lowerings !== prevProps.lowerings) {
-      // this.setState({ filteredLowerings: this.filterLoweringsFromProps() })
       this.setState({ filteredLowerings: this.props.lowerings })
     }
 
     if (this.props.roles !== prevProps.roles) {
       this.setActiveCruise()
     }
-
-    // if (this.state.activeCruise !== prevState.activeCruise) {
-    //   this.setState({ filteredLowerings: this.filterLoweringsFromProps() })
-    // }
   }
 
   componentWillUnmount() {
@@ -145,14 +139,6 @@ class Lowerings extends Component {
     if (fieldVal !== '') {
       this.setState({
         filteredLowerings: this.props.lowerings.filter((lowering) => {
-          // if (
-          //   this.state.activeCruise &&
-          //   !moment
-          //     .utc(lowering.start_ts)
-          //     .isBetween(moment.utc(this.state.activeCruise.start_ts), moment.utc(this.state.activeCruise.stop_ts))
-          // ) {
-          //   return false
-          // }
           const regex = RegExp(fieldVal, 'i')
           if (lowering.lowering_id.match(regex) || lowering.lowering_location.match(regex)) {
             return lowering
@@ -162,7 +148,6 @@ class Lowerings extends Component {
         })
       })
     } else {
-      // this.setState({ filteredLowerings: this.filterLoweringsFromProps() })
       this.setState({ filteredLowerings: this.props.lowerings })
     }
     this.handlePageSelect(1)
