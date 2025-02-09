@@ -89,21 +89,18 @@ class EventHistory extends Component {
         auth: authorizationHeader
       })
 
-      const updateHandler = (update) => {
+      const updateHandler = async (update) => {
         if (this.state.events.length === 0) {
-          this.fetchEvents()
-          this.fetchEventExport()
+          await this.fetchEvents()
+          await this.fetchEventExport()
         } else {
           const oldest_ts = Moment(this.state.events.slice(-1)[0].ts)
           const event_ts = Moment(this.state.event.ts)
           const update_ts = Moment(update.ts)
 
           if (update_ts > oldest_ts) {
-            this.fetchEvents()
-          }
-
-          if (update_ts >= event_ts) {
-            this.fetchEventExport()
+            await this.fetchEvents()
+            await this.fetchEventExport()
           }
         }
       }
