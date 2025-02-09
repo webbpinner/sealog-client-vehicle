@@ -108,8 +108,8 @@ class EventHistory extends Component {
         }
       }
 
-      const updateAuxDataHandler = (update) => {
-        const event = get_events({}, update.event_id) || {}
+      const updateAuxDataHandler = async (update) => {
+        const event = await get_events({}, update.event_id) || {}
         if (event.id) {
           updateHandler(event)
         }
